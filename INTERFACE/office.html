@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMS — The Office</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #f5e6c8;
+      background-image: radial-gradient(circle, #c8a882 1px, transparent 1px);
+      background-size: 18px 18px;
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      text-align: center;
+      background: #1a1a1a;
+      border: 4px solid #1a1a1a;
+      border-radius: 6px;
+      padding: 0.75rem 2rem;
+      width: 100%;
+      max-width: 960px;
+      box-shadow: 6px 6px 0 #888;
+      margin-bottom: 2rem;
+    }
+
+    .masthead h1 {
+      font-family: 'Bangers', Impact, sans-serif;
+      font-size: 3rem;
+      letter-spacing: 0.1em;
+      color: #ffe600;
+      text-shadow: 3px 3px 0 #e94560;
+      line-height: 1;
+    }
+
+    .masthead .meta {
+      color: #aaa;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    .masthead .project-tag {
+      display: inline-block;
+      background: #e94560;
+      color: white;
+      font-family: 'Bangers', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      padding: 0.15rem 0.9rem;
+      border-radius: 3px;
+      margin-top: 0.4rem;
+    }
+
+    /* ── DEPARTMENT ZONES ── */
+    .office {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .department {
+      background: rgba(255,255,255,0.45);
+      border: 3px solid #1a1a1a;
+      border-radius: 10px;
+      box-shadow: 5px 5px 0 #bbb;
+      padding: 1rem 1.25rem 1.25rem;
+    }
+
+    .dept-label {
+      font-family: 'Bangers', Impact, sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: white;
+      display: inline-block;
+      padding: 0.15rem 0.9rem;
+      border-radius: 4px;
+      border: 2px solid #1a1a1a;
+      margin-bottom: 1rem;
+    }
+
+    .dept-personas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: flex-start;
+    }
+
+    /* ── PERSONA CARD ── */
+    .persona {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      padding: 0.5rem 0.5rem 0;
+      transition: transform 0.15s ease;
+      user-select: none;
+      width: 130px;
+    }
+
+    .persona:hover {
+      transform: translateY(-6px) scale(1.05);
+    }
+
+    .persona img {
+      width: 110px;
+      height: 140px;
+      object-fit: contain;
+      object-position: bottom center;
+      display: block;
+      filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.25));
+    }
+
+    .nameplate {
+      font-family: 'Bangers', Impact, sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: white;
+      background: #1a1a1a;
+      padding: 0.1rem 0.7rem;
+      border-radius: 3px;
+      margin-top: 0.3rem;
+      white-space: nowrap;
+    }
+
+    .roletag {
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: white;
+      padding: 0.1rem 0.5rem;
+      border-radius: 2px;
+      margin-top: 2px;
+      text-align: center;
+      max-width: 130px;
+    }
+
+    .hint {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #999;
+      text-align: center;
+    }
+
+    /* ── OVERLAY ── */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .overlay.active { display: flex; }
+
+    .profile-bubble {
+      background: #fffde7;
+      border: 4px solid #1a1a1a;
+      border-radius: 16px;
+      box-shadow: 8px 8px 0 #1a1a1a;
+      width: 100%;
+      max-width: 480px;
+      animation: popIn 0.18s ease;
+      position: relative;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to   { transform: scale(1);    opacity: 1; }
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: flex-end;
+      gap: 1rem;
+      padding: 1rem 1.25rem 0.75rem;
+      border-bottom: 3px solid #1a1a1a;
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 100px;
+      object-fit: contain;
+      object-position: bottom center;
+      flex-shrink: 0;
+    }
+
+    .profile-header-text h2 {
+      font-family: 'Bangers', Impact, sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    .profile-header-text .role-badge {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: white;
+      padding: 0.15rem 0.6rem;
+      border-radius: 3px;
+      margin-top: 0.3rem;
+      display: inline-block;
+    }
+
+    .profile-body {
+      padding: 1rem 1.25rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .profile-section {
+      background: white;
+      border: 2.5px solid #1a1a1a;
+      border-radius: 8px;
+      padding: 0.6rem 0.85rem;
+    }
+
+    .profile-section h3 {
+      font-family: 'Bangers', Impact, sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      border: 2px solid #1a1a1a;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .section-role h3    { color: #1a1a1a; } .section-role .dot    { background: #ffe600; }
+    .section-recent h3  { color: #166534; } .section-recent .dot  { background: #4ade80; }
+    .section-current h3 { color: #1e3a8a; } .section-current .dot { background: #60a5fa; }
+
+    .profile-section p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #222;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: -14px; right: -14px;
+      width: 30px; height: 30px;
+      background: #e94560;
+      color: white;
+      border: 3px solid #1a1a1a;
+      border-radius: 50%;
+      font-family: 'Bangers', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── FOOTER ── */
+    .footer-strip {
+      width: 100%;
+      max-width: 960px;
+      margin-top: 1.5rem;
+      background: #1a1a1a;
+      color: #666;
+      font-size: 0.7rem;
+      text-align: center;
+      padding: 0.4rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 3px solid #1a1a1a;
+      box-shadow: 6px 6px 0 #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="masthead">
+    <h1>🏢 The Office</h1>
+    <div class="meta">Agent Management System — Team Directory</div>
+    <div class="project-tag">AMS — Agent Management System</div>
+  </div>
+
+  <div class="office">
+
+    <!-- LEADERSHIP & PROCESS -->
+    <div class="department">
+      <div class="dept-label" style="background:#1a1a1a;">Leadership &amp; Process</div>
+      <div class="dept-personas">
+        <div class="persona" onclick="showProfile('scrum-master')">
+          <img src="avatars/scrum-master.png" alt="Scrum Master">
+          <div class="nameplate">Scrum Master</div>
+          <div class="roletag" style="background:#374151;">Process</div>
+        </div>
+        <div class="persona" onclick="showProfile('priya')">
+          <img src="avatars/priya-product-owner.png" alt="Priya">
+          <div class="nameplate">Priya</div>
+          <div class="roletag" style="background:#7c3aed;">Product Owner</div>
+        </div>
+        <div class="persona" onclick="showProfile('eric')">
+          <img src="avatars/eric-ea.png" alt="Eric">
+          <div class="nameplate">Eric</div>
+          <div class="roletag" style="background:#0369a1;">Exec Assistant</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENGINEERING & QUALITY -->
+    <div class="department">
+      <div class="dept-label" style="background:#059669;">Engineering &amp; Quality</div>
+      <div class="dept-personas">
+        <div class="persona" onclick="showProfile('cody')">
+          <img src="avatars/cody-coder.png" alt="Cody">
+          <div class="nameplate">Cody</div>
+          <div class="roletag" style="background:#059669;">Coder</div>
+        </div>
+        <div class="persona" onclick="showProfile('quinn')">
+          <img src="avatars/quinn-qa.png" alt="Quinn">
+          <div class="nameplate">Quinn</div>
+          <div class="roletag" style="background:#0891b2;">QA / Tester</div>
+        </div>
+        <div class="persona" onclick="showProfile('lila')">
+          <img src="avatars/lila-librarian.png" alt="Lila">
+          <div class="nameplate">Lila</div>
+          <div class="roletag" style="background:#7c2d8c;">Librarian / Doc</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESIGN & EXPERIENCE -->
+    <div class="department">
+      <div class="dept-label" style="background:#db2777;">Design &amp; Experience</div>
+      <div class="dept-personas">
+        <div class="persona" onclick="showProfile('derek')">
+          <img src="avatars/derek-designer.png" alt="Derek">
+          <div class="nameplate">Derek</div>
+          <div class="roletag" style="background:#db2777;">Designer</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARKETING & CONTENT -->
+    <div class="department">
+      <div class="dept-label" style="background:#d97706;">Marketing &amp; Content</div>
+      <div class="dept-personas">
+        <div class="persona" onclick="showProfile('maya')">
+          <img src="avatars/maya-marketing.png" alt="Maya">
+          <div class="nameplate">Maya</div>
+          <div class="roletag" style="background:#d97706;">Marketing Mgr</div>
+        </div>
+        <div class="persona" onclick="showProfile('stacey')">
+          <img src="avatars/stacey-strategist.png" alt="Stacey">
+          <div class="nameplate">Stacey</div>
+          <div class="roletag" style="background:#16a34a;">Content Strategist</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hint">Click any team member to see their profile</div>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay" onclick="closeProfile(event)">
+    <div class="profile-bubble">
+      <button class="close-btn" onclick="closeAll()">✕</button>
+      <div class="profile-header">
+        <img class="profile-avatar" id="profile-avatar" src="" alt="">
+        <div class="profile-header-text">
+          <h2 id="profile-name"></h2>
+          <div class="role-badge" id="profile-role-badge"></div>
+        </div>
+      </div>
+      <div class="profile-body" id="profile-body"></div>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    AMS · Agent Management System · Team Directory
+  </div>
+
+  <script>
+    const profiles = {
+      'scrum-master': {
+        name: 'Scrum Master',
+        role: 'Process Facilitator',
+        color: '#374151',
+        avatar: 'avatars/scrum-master.png',
+        description: 'Facilitates the AMS process — runs sprint planning, coordinates between personas, removes blockers, and keeps the team moving. Manages the other personas rather than doing the work directly.',
+        recent: 'Ran sprint planning session for Sprint 4. Assigned tasks across personas using Task Triage — routed complex decisions to Opus, routine work to Haiku.',
+        current: 'Monitoring sprint progress and watching for blockers across all active workstreams.'
+      },
+      priya: {
+        name: 'Priya',
+        role: 'Product Owner',
+        color: '#7c3aed',
+        avatar: 'avatars/priya-product-owner.png',
+        description: 'Defines requirements, sets priorities, and represents the end user. Owns the backlog and makes the call on what gets built and in what order.',
+        recent: 'Finalized the persona list for AMS. Approved the Stanford Webcamp talk outline and the Daily Scrum interface spec.',
+        current: 'Defining acceptance criteria for the office.html team directory and preparing talk content for April 30.'
+      },
+      eric: {
+        name: 'Eric',
+        role: 'Executive Assistant',
+        color: '#0369a1',
+        avatar: 'avatars/eric-ea.png',
+        description: 'Handles coordination, scheduling, and administrative tasks. Keeps the team organized and makes sure nothing falls through the cracks.',
+        recent: 'Confirmed Stanford Webcamp session date. Logged sprint planning notes to HANDOFF/.',
+        current: 'Drafting a talk run-of-show with timing breakdown for the April 30 presentation.'
+      },
+      cody: {
+        name: 'Cody',
+        role: 'Coder',
+        color: '#059669',
+        avatar: 'avatars/cody-coder.png',
+        description: 'Implements features and fixes. The hands-on builder — writes the code, wires the pieces together, and ships working software.',
+        recent: 'Built the Daily Scrum HTML interface with comic book styling and interactive standup popups.',
+        current: 'Building office.html team directory. Next: skill to auto-generate standup content from HANDOFF/ files.'
+      },
+      quinn: {
+        name: 'Quinn',
+        role: 'QA / Tester',
+        color: '#0891b2',
+        avatar: 'avatars/quinn-qa.png',
+        description: 'Owns quality assurance. Writes and runs tests, catches regressions, and makes sure what ships actually works.',
+        recent: 'Not yet active on this sprint.',
+        current: 'Standing by — will review the Daily Scrum and Office interfaces once Cody marks them ready for QA.'
+      },
+      lila: {
+        name: 'Lila',
+        role: 'Librarian / Documentarian',
+        color: '#7c2d8c',
+        avatar: 'avatars/lila-librarian.png',
+        description: 'Organizes project knowledge and keeps the DOC/ layer up to date. Also writes and maintains documentation so the rest of the team — and future agents — can find what they need.',
+        recent: 'Reformatted all root .md files: Overview, Tooling, Personas, session-description, and presentation. Added cross-links throughout.',
+        current: 'Filling in Tooling.md descriptions for Spec Kitty, Zora, and Dalia. Will document the Daily Scrum skill once the spec is locked.'
+      },
+      derek: {
+        name: 'Derek',
+        role: 'Designer',
+        color: '#db2777',
+        avatar: 'avatars/derek-designer.png',
+        description: 'Owns visual output — typography, color, layout, and polish. Makes sure the results look great. Distinct from UX, which focuses on how things feel; Derek focuses on how things look.',
+        recent: 'Not yet active on this sprint.',
+        current: 'Available to review visual design of the Daily Scrum and Office interfaces.'
+      },
+      maya: {
+        name: 'Maya',
+        role: 'Marketing Manager',
+        color: '#d97706',
+        avatar: 'avatars/maya-marketing.png',
+        description: 'Owns positioning, promotion, and communications. Responsible for making sure the work gets seen — and understood — by the outside world.',
+        recent: 'Not yet active on this sprint.',
+        current: 'Will develop messaging and positioning for the AMS public launch following the Stanford Webcamp talk.'
+      },
+      stacey: {
+        name: 'Stacey',
+        role: 'Content Strategist',
+        color: '#16a34a',
+        avatar: 'avatars/stacey-strategist.png',
+        description: 'Decides what content to create and why. Plans the content that supports the product — documentation, web copy, case studies, and more.',
+        recent: 'Not yet active on this sprint.',
+        current: 'Will develop a content plan around the Stanford Webcamp talk and AMS launch.'
+      }
+    };
+
+    function showProfile(key) {
+      const p = profiles[key];
+      document.getElementById('profile-avatar').src = p.avatar;
+      document.getElementById('profile-avatar').alt = p.name;
+      document.getElementById('profile-name').textContent = p.name;
+      const badge = document.getElementById('profile-role-badge');
+      badge.textContent = p.role;
+      badge.style.background = p.color;
+
+      document.getElementById('profile-body').innerHTML = `
+        <div class="profile-section section-role">
+          <h3><span class="dot"></span>Role</h3>
+          <p>${p.description}</p>
+        </div>
+        <div class="profile-section section-recent">
+          <h3><span class="dot"></span>Recently</h3>
+          <p>${p.recent}</p>
+        </div>
+        <div class="profile-section section-current">
+          <h3><span class="dot"></span>Right Now</h3>
+          <p>${p.current}</p>
+        </div>`;
+
+      document.getElementById('overlay').classList.add('active');
+    }
+
+    function closeProfile(e) {
+      if (e.target === document.getElementById('overlay')) closeAll();
+    }
+
+    function closeAll() {
+      document.getElementById('overlay').classList.remove('active');
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+  </script>
+
+</body>
+</html>

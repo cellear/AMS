@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+
+# AMS session files (project-specific, not for this repo)
+HANDOFF/
+DOC/
+
+# Talk materials (not part of the framework)
+presentation.md
+session-description.md
+
+# Persona image files not in repo
+PERSONAS/source/
+PERSONAS/opaque/
+PERSONAS/trans/
+
+# Sub-projects (each has its own repo)
+agent-handoff/
+agent-handoff-plugin/
+agent-project-tracker/
+tracktime/
+claude-fact-check-skill/
+
+# Examples
+EXAMPLES/
+
+# Root-level HTML files superseded by INTERFACE/
+/daily-scrum.html
+/office.html
+/floorplan.html
+
+# INTERFACE working/archive files (kept locally, not staged)
+INTERFACE/daily-scrum-v1.html
+INTERFACE/office-v1.html
+INTERFACE/daily-scrum-v1 Large.jpeg
+INTERFACE/scrum-idea-1.jpg
