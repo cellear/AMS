@@ -1,5 +1,7 @@
 # Agent Management System (AMS)
 
+![AMS scrum personas](images/scrum-personas.jpeg)
+
 **Scrum for AI assistants.**
 
 AMS is a lightweight framework for managing AI agents the way we manage human teams — with defined roles, structured handoffs, and just enough process to stay on track without getting in the way.

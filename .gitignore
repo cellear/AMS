@@ -24,6 +24,9 @@ claude-fact-check-skill/
 # Examples
 EXAMPLES/
 
+# Outgoing artifacts (not for this repo)
+OUTGOING/
+
 # Root-level HTML files superseded by INTERFACE/
 /daily-scrum.html
 /office.html
