@@ -37,3 +37,6 @@ INTERFACE/daily-scrum-v1.html
 INTERFACE/office-v1.html
 INTERFACE/daily-scrum-v1 Large.jpeg
 INTERFACE/scrum-idea-1.jpg
+
+# Test installations of agent-scrum (each becomes its own repo)
+AMS-TEST/
