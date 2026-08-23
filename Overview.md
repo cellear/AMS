@@ -4,6 +4,8 @@ AMS is a lightweight, tool-agnostic framework for bringing Agile-style disciplin
 
 The core principle: **manage robots the way we manage humans.**
 
+HANDOFF is the only required component. DOC, LEARNINGS, SPRINTS, and OFFICES are optional. Copy this repo into a project as `AMS/` and tell an agent to read `INSTALL.md`.
+
 ---
 
 ## Talk
