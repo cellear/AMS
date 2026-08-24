@@ -1,9 +1,30 @@
 # macOS
 .DS_Store
 
-# AMS session files (project-specific, not for this repo)
+# AMS working files (project-specific). Keep PROTOCOL.md and office templates.
 HANDOFF/
-DOC/
+
+DOC/*
+!DOC/PROTOCOL.md
+
+LEARNINGS/*
+!LEARNINGS/PROTOCOL.md
+
+SPRINTS/*
+!SPRINTS/PROTOCOL.md
+
+EPICS/
+
+OFFICES/*
+!OFFICES/PROTOCOL.md
+!OFFICES/_template/
+!OFFICES/_template/**
+
+MARKETING/*
+!MARKETING/PROTOCOL.md
+
+SECURITY/*
+!SECURITY/PROTOCOL.md
 
 # Talk materials (not part of the framework)
 presentation.md
