@@ -1,30 +1,11 @@
 # macOS
 .DS_Store
 
-# AMS working files (project-specific). Keep PROTOCOL.md and office templates.
-HANDOFF/
-
-DOC/*
-!DOC/PROTOCOL.md
-
-LEARNINGS/*
-!LEARNINGS/PROTOCOL.md
-
-SPRINTS/*
-!SPRINTS/PROTOCOL.md
-
-EPICS/
-
-OFFICES/*
-!OFFICES/PROTOCOL.md
-!OFFICES/_template/
-!OFFICES/_template/**
-
-MARKETING/*
-!MARKETING/PROTOCOL.md
-
-SECURITY/*
-!SECURITY/PROTOCOL.md
+# NOTE: this file is dev-role only. It governs the AMS repo, never an installed kit.
+# The shipped payload lives in kit/ and carries no .gitignore of its own, so a project
+# that installs AMS tracks its own HANDOFF/, DOC/, SPRINTS/ and LEARNINGS/ normally.
+# Do not add component-directory rules here — AMS uses those names at root for its own
+# journal (see CLAUDE.md), and ignoring them is what made AMS unable to record itself.
 
 # Talk materials (not part of the framework)
 presentation.md

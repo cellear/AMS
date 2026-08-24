@@ -8,10 +8,10 @@ Tools and projects in the AMS ecosystem — both things Luke has built and relat
 
 | Tool | Description |
 |---|---|
-| **[Agent Handoff Protocol](agent-handoff/)** | The core convention: `AGENT.md` and `HANDOFF/` (DOC is optional in AMS) give agents persistent memory across sessions |
-| **[Agent Handoff Plugin](agent-handoff-plugin/)** | Claude Code plugin wrapping the protocol; adds `/handoff` command for easy setup and session capture |
-| **[Agent Project Tracker](agent-project-tracker/)** | Private template for tracking a portfolio of agent-enabled projects across a machine or organization |
-| **[TrackTime](tracktime/)** | Claude Code skill for logging billable hours to CSV; no external services required |
+| **[Agent Handoff Protocol](https://github.com/cellear/agent-handoff)** | The core convention: `AGENT.md` and `HANDOFF/` (DOC is optional in AMS) give agents persistent memory across sessions |
+| **[Agent Handoff Plugin](https://github.com/cellear/agent-handoff-plugin)** | Claude Code plugin wrapping the protocol; adds `/handoff` command for easy setup and session capture |
+| **[Agent Project Tracker](https://github.com/cellear/agent-project-tracker)** *(private)* | Private template for tracking a portfolio of agent-enabled projects across a machine or organization |
+| **[TrackTime](https://github.com/cellear/tracktime)** *(private)* | Claude Code skill for logging billable hours to CSV; no external services required |
 
 ---
 

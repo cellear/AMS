@@ -1,3 +1,8 @@
-Read and follow AGENT.md in this project's root directory.
+You are working **on** AMS itself, not in a project that has AMS installed.
 
-To set up AMS in a project, read INSTALL.md.
+- The framework protocol is `kit/AGENT.md`. Read and follow it.
+- `kit/` is the payload — the directory that becomes `AMS/` in a consuming project.
+  Anything outside `kit/` is repo-role and never ships.
+- Write session handoffs to `HANDOFF/` in this repo root.
+
+To install AMS into another project, read `INSTALL-AMS.md`.

@@ -34,7 +34,10 @@ If `CONFIG.md` already has a filled-in **Your value** column, or `HANDOFF/` alre
 
 Find the AMS kit:
 
-1. This file's directory is the kit (usually `AMS/` or `.ams/` in the project root).
+1. This file's directory is the kit. Normally that is `AMS/` (or `.ams/`) in the project root.
+   During a first install it may instead be `kit/` inside a temporary `AMS-INSTALL/` clone —
+   in that case `INSTALL-AMS.md` has already placed the kit, so work against the placed copy
+   at `AMS/`, not the installer's.
 2. Confirm the project root (the parent of the kit, unless the human says otherwise).
 
 If `CONFIG.md` already exists and lists components other than the defaults, say so and treat this as a re-run: "You already have X enabled. Add more, change paths, or staff more offices?"

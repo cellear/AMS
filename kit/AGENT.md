@@ -143,6 +143,9 @@ To choose components and write `CONFIG.md`, read `INSTALL.md`.
 
 ## Version History
 
+- **3.1** (2026-08-24) — Repo split into payload (`kit/`) and repo-role files; `INSTALL-AMS.md`
+  bootstrap places the kit and hides the installer; kit no longer ships a `.gitignore`, so
+  projects track their own handoffs, docs, sprints, and learnings
 - **3.0** (2026-08-23) — Components are independent; HANDOFF required; DOC/LEARNINGS/SPRINTS/OFFICES optional via `CONFIG.md`; next-assistant paste prompt; install wizard in `INSTALL.md`
 - **2.0** (2026-04-23) — Moved to `AMS/` directory convention; added configurable directory names via `config.md`; fallback to project root for `HANDOFF/` and `DOC/`
 - **1.1** (2026-02-16) — Split into README + AGENT.md; added tool-specific setup; simplified DOC guidance
