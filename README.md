@@ -97,6 +97,8 @@ The directory name, and the names of `HANDOFF/` and `DOC/` inside it, can all be
 
 Works with any AI assistant. No external services. No account required.
 
+> **Note for chat-based tools:** AMS relies on agents reading files from your project directory automatically. Code-native tools (Claude Code, Codex CLI, Cursor, Gemini CLI) do this — they pick up `AGENT.md` on startup and follow the protocol without help. Chat-based tools (ChatGPT, Claude.ai, Gemini web) don't have filesystem access and won't discover `AGENT.md` on their own. If you're using a chat tool for part of the work, you'll need to paste or upload the relevant context manually — and write the handoff yourself when the session ends. These tools are still valuable team members (great for visuals, brainstorming, research), but the human is responsible for keeping them in the loop.
+
 ---
 
 ## License
