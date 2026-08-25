@@ -6,6 +6,8 @@
 
 AMS is a lightweight framework for managing AI agents the way we manage human teams — with defined roles, structured handoffs, and just enough process to stay on track without getting in the way.
 
+You do not need every piece. **HANDOFF is required.** Everything else is optional.
+
 ---
 
 ## The Problem
@@ -18,35 +20,44 @@ We've solved this before. Agile — and Scrum in particular — exists precisely
 
 ## How It Works
 
-AMS has three layers:
+Clone this repo into your project under a temporary name:
 
-### 1. The Handoff Protocol
+```
+git clone --recurse-submodules https://github.com/cellear/AMS.git AMS-INSTALL
+```
 
-The foundation. A simple convention — a few markdown files in an `AMS/` directory — that gives agents persistent memory across sessions:
+Then tell an agent to read `AMS-INSTALL/INSTALL-AMS.md`. It copies the kit into your project as `AMS/`, hides the installer from your project's git, and hands off to the setup wizard, which asks which components you want and writes `AMS/CONFIG.md`.
 
-- `your-project/`
-  - `AMS/`
-    - `AGENT.md` — Protocol instructions
-    - `HANDOFF/` — Session journals (chronological)
-    - `DOC/` — Reference docs (persistent, by topic)
+`AMS-INSTALL/` is scaffolding — once AMS is installed it can be deleted, and the installer will offer to do it.
 
-The directory is named `AMS/` by default, but everything is configurable. Rename `AMS/` to `.ams/` if you want it hidden, or to anything else that fits your project. `HANDOFF/` and `DOC/` can be renamed too — if your project already has a `notes/` or `journal/` folder, point AMS at it instead of creating a new one. See `AMS/config.md` for details.
+After that, an agent reads `AMS/AGENT.md` at the start of each session. It follows only the components CONFIG enables. At session end it writes a handoff so the next session — by any agent, using any tool — picks up where this one left off.
 
-An agent reads `AGENT.md` at the start of each session. It checks `HANDOFF/` for recent context and `DOC/` for project knowledge. At session end, it writes a handoff document so the next session — by any agent, using any tool — picks up where this one left off.
+### Components
 
-### 2. Personas
+| Component | Required | What it is |
+|---|---|---|
+| **HANDOFF** | yes | Session journals, chronological |
+| **DOC** | no | Reference docs, persistent by topic |
+| **LEARNINGS** | no | Sprint retros and/or topical findings |
+| **SPRINTS** | no | Sprint plans, stories, demo checkpoints |
+| **EPICS** | no | Cross-sprint work; optional extra under SPRINTS |
+| **OFFICES** | no | Per-persona working memory (`desk.md`, identity) |
+| **MARKETING** | no | Experimental stub |
+| **SECURITY** | no | Experimental stub |
 
-Personas are specific AI threads that play defined roles on the project team, the same way a Scrum team has a Product Owner, developers, and a Scrum Master.
+Defaults live inside `AMS/`. `CONFIG.md` can point any component at another folder (existing `docs/`, `journal/`, and so on).
 
-Not every project needs every persona. You staff the sprint team from the available pool as the work demands. Multiple instances of the same persona are valid — two coders working in parallel, for instance — when workstreams benefit from separate contexts.
+Each optional component has a `PROTOCOL.md` in its directory. Agents follow that file only when CONFIG lists the component.
+
+### Personas
+
+Personas are specific AI threads that play defined roles on the project team. Not every project needs every persona. If you enable OFFICES, the installer asks which roles to staff.
 
 See [Personas.md](Personas.md) for the full roster.
 
-### 3. Sprint Planning & Task Triage
+### Sprint planning
 
-Before a sprint begins, a capable model evaluates the work: breaking tasks into stories, judging complexity, and assigning each task to the most cost-effective model that can handle it. Routine work goes to a lighter model; decisions that require judgment go to a more capable one.
-
-This maps directly onto Scrum's sprint planning ceremony — and it keeps token costs manageable on real projects.
+If SPRINTS is enabled, project planning (epics, stories, model assignment) is a **separate** step: `AMS/agent-scrum/wizard.md`. Install does not run it.
 
 ---
 
@@ -68,13 +79,20 @@ If you want a more fully-featured pipeline with automated lifecycle management, 
 
 ## What's in This Repo
 
+Everything an installed project receives lives in **`kit/`**. Everything outside `kit/` is repo-role and never ships.
+
 | Path | Contents |
 |---|---|
-| [Personas.md](Personas.md) | The full persona roster with roles and descriptions |
-| [Tooling.md](Tooling.md) | AMS tools and related projects in the ecosystem |
-| [INTERFACE/](INTERFACE/) | Daily Scrum, Office, and Floor Plan HTML interfaces |
-| [PERSONAS/](PERSONAS/) | Avatar images (transparent, opaque, and source files) |
-| `AMS/` | The Handoff Protocol — copy this into your project to get started |
+| [INSTALL-AMS.md](INSTALL-AMS.md) | Bootstrap — places the kit into a project. Runs once. |
+| [kit/](kit/) | **The payload.** This directory becomes `AMS/` in your project. |
+| [kit/AGENT.md](kit/AGENT.md) | Core session protocol (HANDOFF) |
+| [kit/INSTALL.md](kit/INSTALL.md) | Agent-driven component wizard; stays in the project for re-runs |
+| [kit/CONFIG.md](kit/CONFIG.md) | Enabled components and directory names |
+| [kit/Personas.md](kit/Personas.md) | Persona roster |
+| [kit/agent-scrum/](kit/agent-scrum/) | Sprint-planning reference and wizard (submodule) |
+| `kit/DOC/`, `kit/LEARNINGS/`, `kit/SPRINTS/`, `kit/OFFICES/`, … | Optional component protocols |
+| [Tooling.md](Tooling.md) | AMS tools and related projects |
+| [INTERFACE/](INTERFACE/) | Daily Scrum, Office, and Floor Plan HTML (not part of install) |
 
 ---
 
@@ -84,16 +102,17 @@ If you want a more fully-featured pipeline with automated lifecycle management, 
 |---|---|
 | [agent-handoff](https://github.com/cellear/agent-handoff) | The Handoff Protocol — standalone, tool-agnostic |
 | [agent-handoff-plugin](https://github.com/cellear/agent-handoff-plugin) | Claude Code plugin for `/handoff` setup and session capture |
+| [agent-scrum](https://github.com/cellear/agent-scrum) | Sprint / epic / learnings convention (submodule here) |
 
 ---
 
 ## Getting Started
 
-1. Copy `AMS/` into your project root
-2. Tell your agent to read `AMS/AGENT.md`
-3. It handles the rest
-
-The directory name, and the names of `HANDOFF/` and `DOC/` inside it, can all be changed to suit your project. See `AMS/config.md`.
+1. `git clone --recurse-submodules https://github.com/cellear/AMS.git AMS-INSTALL` in your project root
+2. Tell your agent to read `AMS-INSTALL/INSTALL-AMS.md` (or “install AMS”)
+3. Answer the questions; it writes `AMS/CONFIG.md` and creates the directories
+4. Delete `AMS-INSTALL/` when it offers — AMS lives in `AMS/` now
+5. Later sessions: tell the agent to read `AMS/AGENT.md`
 
 Works with any AI assistant. No external services. No account required.
 

@@ -4,6 +4,8 @@ AMS is a lightweight, tool-agnostic framework for bringing Agile-style disciplin
 
 The core principle: **manage robots the way we manage humans.**
 
+HANDOFF is the only required component. DOC, LEARNINGS, SPRINTS, and OFFICES are optional. Clone this repo into a project as `AMS-INSTALL/` and tell an agent to read `INSTALL-AMS.md`; it installs the kit as `AMS/` and hands off to the component wizard.
+
 ---
 
 ## Talk
@@ -18,7 +20,7 @@ The core principle: **manage robots the way we manage humans.**
 |---|---|
 | **Agent Handoff Protocol** | https://github.com/cellear/agent-handoff |
 | **Agent Handoff Skill Plugin** | https://github.com/cellear/agent-handoff-plugin |
-| **Agent Project Tracker** | https://github.com/cellear/agent-project-tracker |
+| **Agent Project Tracker** *(private)* | https://github.com/cellear/agent-project-tracker |
 | **Fact Check Skill** | https://github.com/cellear/claude-fact-check-skill |
 
 ---
