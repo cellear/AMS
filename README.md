@@ -23,7 +23,7 @@ We've solved this before. Agile — and Scrum in particular — exists precisely
 Clone this repo into your project under a temporary name:
 
 ```
-git clone --recurse-submodules https://github.com/cellear/AMS.git AMS-INSTALL
+git clone https://github.com/cellear/AMS.git AMS-INSTALL
 ```
 
 Then tell an agent to read `AMS-INSTALL/INSTALL-AMS.md`. It copies the kit into your project as `AMS/`, hides the installer from your project's git, and hands off to the setup wizard, which asks which components you want and writes `AMS/CONFIG.md`.
@@ -89,7 +89,7 @@ Everything an installed project receives lives in **`kit/`**. Everything outside
 | [kit/INSTALL.md](kit/INSTALL.md) | Agent-driven component wizard; stays in the project for re-runs |
 | [kit/CONFIG.md](kit/CONFIG.md) | Enabled components and directory names |
 | [kit/Personas.md](kit/Personas.md) | Persona roster |
-| [kit/agent-scrum/](kit/agent-scrum/) | Sprint-planning reference and wizard (submodule) |
+| [kit/agent-scrum/](kit/agent-scrum/) | Sprint-planning reference and wizard (vendored copy of `cellear/agent-scrum`) |
 | `kit/DOC/`, `kit/LEARNINGS/`, `kit/SPRINTS/`, `kit/OFFICES/`, … | Optional component protocols |
 | [Tooling.md](Tooling.md) | AMS tools and related projects |
 | [INTERFACE/](INTERFACE/) | Daily Scrum, Office, and Floor Plan HTML (not part of install) |
@@ -102,13 +102,13 @@ Everything an installed project receives lives in **`kit/`**. Everything outside
 |---|---|
 | [agent-handoff](https://github.com/cellear/agent-handoff) | The Handoff Protocol — standalone, tool-agnostic |
 | [agent-handoff-plugin](https://github.com/cellear/agent-handoff-plugin) | Claude Code plugin for `/handoff` setup and session capture |
-| [agent-scrum](https://github.com/cellear/agent-scrum) | Sprint / epic / learnings convention (submodule here) |
+| [agent-scrum](https://github.com/cellear/agent-scrum) | Sprint / epic / learnings convention (vendored into `kit/` here) |
 
 ---
 
 ## Getting Started
 
-1. `git clone --recurse-submodules https://github.com/cellear/AMS.git AMS-INSTALL` in your project root
+1. `git clone https://github.com/cellear/AMS.git AMS-INSTALL` in your project root
 2. Tell your agent to read `AMS-INSTALL/INSTALL-AMS.md` (or “install AMS”)
 3. Answer the questions; it writes `AMS/CONFIG.md` and creates the directories
 4. Delete `AMS-INSTALL/` when it offers — AMS lives in `AMS/` now

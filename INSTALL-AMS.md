@@ -15,7 +15,7 @@ Like every other file here, this is just a prompt — no code.
 
 The human clones this repo into their project under a temporary name:
 
-    git clone --recurse-submodules https://github.com/cellear/AMS.git AMS-INSTALL
+    git clone https://github.com/cellear/AMS.git AMS-INSTALL
 
 Then: "Read `AMS-INSTALL/INSTALL-AMS.md`" / "Install AMS".
 
@@ -72,13 +72,9 @@ project: `.git/`, `.gitignore`, `CLAUDE.md`, `README.md`, `Overview.md`, `Toolin
 The kit ships no `.gitignore`. That is deliberate — the project tracks its own handoffs, docs,
 sprints, and learnings normally.
 
-Confirm afterward that `AMS/AGENT.md` and `AMS/INSTALL.md` exist. If `AMS/agent-scrum/` is
-empty, the clone omitted `--recurse-submodules`; tell the human, and that sprint planning via
-`AMS/agent-scrum/wizard.md` will be unavailable until they run:
-
-    git -C {installer_dir} submodule update --init --recursive
-
-and re-copy.
+Confirm afterward that `AMS/AGENT.md`, `AMS/INSTALL.md`, and `AMS/agent-scrum/wizard.md`
+all exist. `agent-scrum` is vendored into the kit as plain files, so a plain `git clone` is
+enough — no submodule flags, nothing to initialize.
 
 ## Phase 3 — Hide the installer from the project's git
 

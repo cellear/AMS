@@ -4,7 +4,7 @@ Follow this file only when `CONFIG.md` lists `SPRINTS` in `components`.
 
 Sprints organize the work: what is planned, in flight, done, and accepted. Handoffs remain the session journals; they should reference the sprint and story they touched.
 
-Sprint planning (breaking a goal into epics, sprints, and stories) is a **separate** command: read `agent-scrum/wizard.md` if that submodule is present. Do not run it as part of `INSTALL.md`.
+Sprint planning (breaking a goal into epics, sprints, and stories) is a **separate** command: read `agent-scrum/wizard.md`. Do not run it as part of `INSTALL.md`.
 
 ---
 
@@ -23,7 +23,7 @@ Each sprint file should include:
 
 Stories use checkbox status in their heading (`[ ]` → `[x]`). Acceptance criteria are checklists.
 
-A starter file lives in `agent-scrum/template/SPRINTS/sprint-1.md` when that submodule is present.
+A starter file lives in `agent-scrum/template/SPRINTS/sprint-1.md`.
 
 ---
 

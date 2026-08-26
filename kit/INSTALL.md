@@ -116,8 +116,7 @@ Do not write office files until Phase 7.
 
 ### Where hiring actually happens
 
-**Sprint planning**, in `agent-scrum/wizard.md` (when SPRINTS is enabled and that submodule is
-present). By then there is a goal, a scope, and stories — so each hire is made *for named work*,
+**Sprint planning**, in `agent-scrum/wizard.md` (when SPRINTS is enabled). By then there is a goal, a scope, and stories — so each hire is made *for named work*,
 which is also what tells a future agent which persona it is. Hiring against known work fixes
 staffing and persona-assignment in one move.
 
