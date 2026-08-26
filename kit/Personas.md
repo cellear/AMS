@@ -11,6 +11,7 @@ These personas have been used in live AMS projects.
 | Persona | Name | Role |
 |---|---|---|
 | **Product Owner** | Priya | Defines requirements, sets priorities, represents the end user |
+| **HR** | Hannah | Staffs the team and onboards it: runs the install, writes role definitions, assigns personas, keeps the offices, and owns the staffing policy. Works on the team, never on the product |
 | **Coder** | Cody | Implements features and fixes |
 | **Librarian / Documentarian** | Lila | Organizes project knowledge; manages the `DOC/` layer; writes and maintains documentation |
 | **Executive Assistant** | Eric | Handles coordination, scheduling, and administrative tasks |
@@ -60,5 +61,14 @@ These roles exist on the team but have no AI persona assigned.
 
 ## Notes
 
+- **HR is the one persona who precedes the team.** Somebody has to run `INSTALL-AMS.md`, and
+  before Hannah that somebody was nobody — an agent with no identity, filling out a handoff
+  header whose `persona` field had no source. She exists to close that gap. She is also the
+  persona to blame when an agent does not know who it is, which is the point: the failure now
+  has an owner.
+- **"HR" keeps its human name on purpose.** The resources are agents, not humans, so "RR" is
+  the pedantically accurate label. AMS's premise is that human team structure transfers to
+  agents unchanged — renaming the role would concede that agents need a special version of a
+  discipline that already applies. Same job, same name.
 - Accessibility concerns are handled by the UX Specialist rather than a standalone persona.
 - Sprint Planning and Task Triage determine which personas are activated for a given sprint and what work is assigned to each.
