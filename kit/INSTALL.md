@@ -74,7 +74,7 @@ Propose a subset when the human is unsure:
 - Small / solo coding: **HANDOFF** only, or HANDOFF + DOC
 - Knowledge capture without sprints: HANDOFF + LEARNINGS (topical), maybe DOC
 - Scrum-shaped build: HANDOFF + DOC + SPRINTS + LEARNINGS
-- Multi-persona team: add OFFICES
+- Multi-persona team: add OFFICES (only Hannah's office is created now; the team is staffed at sprint planning)
 
 `MARKETING` and `SECURITY` are experimental. Default them **off** unless the human asks.
 
@@ -96,28 +96,51 @@ Capture: `epics` = `on` or `off`.
 
 Skip this phase if `OFFICES` is not enabled.
 
-Read `Personas.md` in this kit. Propose a roster.
+**Do not propose a roster. Do not ask who should be staffed.** On a first install there is no
+project yet to staff against — no goal, no scope, often no files. Any roster chosen here is
+inferred from the directory name and the human's tone of voice, and inference is not hiring.
 
-**Default working set:** Coder (`cody`) and Librarian (`lila`).
+`roster` is therefore **`hannah` alone**. You are Hannah; you get a desk because you will be
+back for re-runs and because you hold the staffing policy. Nobody else is hired yet.
 
-The Product Owner is usually the human and **does not** get an office unless they ask.
+Tell the human plainly, in one sentence, and move on:
 
-**Add by project shape:**
+> Staffing waits until there's a goal to hire against — that happens at sprint planning, not
+> here. For now the only office is mine.
 
-- User-facing UI → Designer (`derek`), UX Specialist (`ux`), QA (`quinn`)
-- Unknowns / discovery → Researcher (`researcher`)
-- Learnings worth teaching → Professor (`professor`)
-- Security-sensitive → Security Auditor (`security`)
-- Facilitation-heavy → Scrum Master (`scrum-master`)
-- Coordination load → Executive Assistant (`eric`)
-
-Persona ids are lowercase: use the **Name** from Personas.md when it exists (`cody`, `lila`, `quinn`, `derek`, `maya`, `stacey`, `eric`, `priya`); otherwise a role slug (`ux`, `professor`, `researcher`, `security`, `scrum-master`, `copywriter`, `architect`).
-
-Let the human edit the list. Multiple instances of the same role are valid (`cody`, `cody-2`).
-
-Capture: `roster` — list of persona ids.
+Capture: `roster` = `hannah`.
 
 Do not write office files until Phase 7.
+
+---
+
+### Where hiring actually happens
+
+**Sprint planning**, in `agent-scrum/wizard.md` (when SPRINTS is enabled and that submodule is
+present). By then there is a goal, a scope, and stories — so each hire is made *for named work*,
+which is also what tells a future agent which persona it is. Hiring against known work fixes
+staffing and persona-assignment in one move.
+
+If SPRINTS is **off**, the human hires by asking, whenever a need is real. Point them at
+`Personas.md` and re-run this wizard; a re-run may add offices.
+
+### The one exception, and how to log it
+
+A persona may be staffed before planning **only if its relevance does not depend on what the
+project turns out to be**. That is rare. A Site Architect qualifies — every system has a shape.
+A QA/Tester does not: it matters only if testing is central, which is unknown.
+
+If the human asks for such a hire, do it, and record it in the handoff as an exception with the
+reason. Two exceptions is a pattern, not an exception — say so if it happens.
+
+### Persona ids
+
+Lowercase. Use the **Name** from `Personas.md` when it exists (`hannah`, `cody`, `lila`,
+`quinn`, `derek`, `maya`, `stacey`, `eric`, `priya`, `archie`); otherwise a role slug (`ux`,
+`professor`, `researcher`, `security`, `scrum-master`, `copywriter`). Multiple instances of the
+same role are valid (`cody`, `cody-2`).
+
+The Product Owner is usually the human and **does not** get an office unless they ask.
 
 ---
 
@@ -206,7 +229,7 @@ The installer has enough to commit when:
 - `ams_dir` is known
 - `components` includes `HANDOFF` and only the optionals the human chose
 - If SPRINTS: `epics` is `on` or `off`
-- If OFFICES: `roster` has at least one persona id
+- If OFFICES: `roster` is `hannah` (plus any logged exception the human explicitly asked for)
 - Directory overrides are recorded (or explicitly default)
 
 If anything above is missing, that is the next question.
@@ -216,6 +239,7 @@ If anything above is missing, that is the next question.
 ## What this wizard doesn't do
 
 - Doesn't plan sprints, epics, or stories
+- Doesn't staff the team — only Hannah's own office. Hiring happens at sprint planning
 - Doesn't pick models or vendors
 - Doesn't generate handoffs
 - Doesn't install the INTERFACE HTML pages
